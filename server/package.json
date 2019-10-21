@@ -1,0 +1,8 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "server of 3i-entry-exit",
+  "main": "index.js",
+  "author": "FukeKazuki",
+  "license": "MIT"
+}
