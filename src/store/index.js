@@ -15,13 +15,11 @@ export default new Vuex.Store({
         play_time: '00:20:00',
       }
     ],
-    active_player: [
-      {
-        name: '',
+    user: {
+        user_handle: '',
         condition: '',
-        time: ''
-      }
-    ]
+        time: '',
+    }
   },
   mutations: {
   },
