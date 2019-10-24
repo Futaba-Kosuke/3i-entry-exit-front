@@ -16,18 +16,28 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <router-view/>
     </v-content>
+
+    <v-footer
+      app
+      color="primary lighten-1"
+      padless
+    >
+      <TransitionBar/>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+// import HelloWorld from './components/HelloWorld';
+import TransitionBar from './components/TransitionBar';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    // HelloWorld,
+    TransitionBar,
   },
   data: () => ({
     //
