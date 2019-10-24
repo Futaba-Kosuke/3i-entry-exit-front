@@ -1,14 +1,17 @@
 <template>
-  <QrcodeStream @decode="onDecode" @init="onInit"/>
+  <div>
+    <p class="error">{{ error }}</p>
+    <!-- <p class="decode-result">Last result: <b>{{ result }}</b></p> -->
+    <qrcode-stream @decode="onDecode" @init="onInit" />
+  </div>
 </template>
+
 <script>
-import { QrcodeStream } from 'vue-qrcode-reader';
+import { QrcodeStream } from 'vue-qrcode-reader'
 
 export default {
-  components: {
-    QrcodeStream,
-  },
-  data: function() {
+  components: { QrcodeStream },
+  data () {
     return {
       result: '',
       error: ''
@@ -18,6 +21,7 @@ export default {
     onDecode (result) {
       this.result = result
     },
+
     async onInit (promise) {
       try {
         await promise
