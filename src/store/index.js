@@ -7,13 +7,21 @@ export default new Vuex.Store({
   state: {
     score_ranking: [
       {
-        name: 'futaba',
-        play_time: '00:18:00'
-      },
-      {
-        name: 'fukke',
-        play_time: '00:20:00',
-      }
+        "name": "niba",
+        "play_time": {
+        "minutes": 1,
+        "seconds": 52,
+        "milliseconds": 128.719
+        }
+        },
+        {
+        "name": "test_user_name",
+        "play_time": {
+        "minutes": 2,
+        "seconds": 29,
+        "milliseconds": 477.441
+        }
+        }
     ],
     user: {
         user_handle: '',
