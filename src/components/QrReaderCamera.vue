@@ -11,6 +11,9 @@ import { QrcodeStream } from 'vue-qrcode-reader'
 
 export default {
   components: { QrcodeStream },
+  props: {
+    user_name: String,
+  },
   data () {
     return {
       result: '',
@@ -20,6 +23,23 @@ export default {
   methods: {
     onDecode (result) {
       this.result = result
+      if (this.result === '3ihyuks3ihyuks') {
+        // axios.post('https://server-3i-entry-exit.herokuapp.com/api/v1/post_time', {
+        //   user: {
+        //     user_handle: user_name,
+        //     condition: '入場',
+        //     time: now,
+        //   }
+        // });
+        const user_data = {
+          user_handle: this.user_name,
+          condition: '入場',
+          time: new Date(),
+        }
+        this.$store.commit('updateUserData', user_data)
+      } 
+      // else if (this.result === '3ikargt3ikargt') {
+      // }
     },
 
     async onInit (promise) {
