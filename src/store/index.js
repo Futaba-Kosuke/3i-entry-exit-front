@@ -23,6 +23,9 @@ export default new Vuex.Store({
         }
         }
     ],
+    name_list: [
+      'niba', 'test_user_name'
+    ],
     user: {
         user_handle: '',
         condition: '',
