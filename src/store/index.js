@@ -26,6 +26,7 @@ export default new Vuex.Store({
     name_list: [
       'niba', 'test_user_name'
     ],
+    // ポスト時に送信するデータ
     user: {
         user_handle: '',
         condition: '',
