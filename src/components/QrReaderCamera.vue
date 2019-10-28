@@ -43,6 +43,9 @@ export default {
         this.$emit('exit')
         this.$store.commit('updateUserData', user_data)
         await axios.post('https://server-3i-entry-exit.herokuapp.com/api/v1/post_time', this.$store.state.user)
+        const names = await axios.get('https://server-3i-entry-exit.herokuapp.com/api/v1/names')
+        this.$store.commit('updateNamesData', names.data)
+        this.$emit('updateNameList')
       }
     },
 

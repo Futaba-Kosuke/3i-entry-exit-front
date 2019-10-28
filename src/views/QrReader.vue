@@ -9,7 +9,7 @@
     />
 
     <v-col v-if="isSearch()">
-      <QrReaderCamera :user_name="user_name" @entry="entry()" @exit="exit()"/>
+      <QrReaderCamera :user_name="user_name" @entry="entry()" @exit="exit()" @updateNameList="updateNameList()"/>
     </v-col>
 
     <!-- 入場時に表示するダイアログ -->
@@ -82,6 +82,9 @@ export default {
     },
     exit() {
       this.exit_dialog = true
+    },
+    updateNameList() {
+      this.name_list = this.$store.state.names
     }
   }
 }
