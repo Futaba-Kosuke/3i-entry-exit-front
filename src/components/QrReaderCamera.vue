@@ -30,16 +30,17 @@ export default {
           conditions: '入場',
           time: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
         }
-        this.$emit('toggleDialog')
+        this.$emit('entry')
         this.$store.commit('updateUserData', user_data)
         await axios.post('https://server-3i-entry-exit.herokuapp.com/api/v1/post_time', this.$store.state.user)
       }
-      else if (this.result === '3ikargt3ikargt') {
+      else if (result === '3ikargt3ikargt' && this.$store.state.user.conditions === '入場') {
         const user_data = {
           user_handle: this.user_name,
           conditions: '退場',
           time: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
         }
+        this.$emit('exit')
         this.$store.commit('updateUserData', user_data)
         await axios.post('https://server-3i-entry-exit.herokuapp.com/api/v1/post_time', this.$store.state.user)
       }
