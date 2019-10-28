@@ -5,6 +5,7 @@
       label="ニックネームを入力してね"
       :hint="hintMessage"
       persistent-hint
+      :disabled="!isEditable"
     />
     <v-col v-if="isSearch()">
       <QrReaderCamera :user_name="user_name" @toggleDialog="dialog = true"/>
@@ -36,7 +37,7 @@ export default {
   },
   data () {
     return {
-      user_name: '',
+      user_name: this.$store.state.user.user_handle,
       name_list: this.$store.state.names,
       dialog: false,
     }
@@ -46,6 +47,13 @@ export default {
       if (this.isSearch()) return 'このニックネームは有効です！'
       else if (this.user_name === '') return ''
       else return 'このニックネームは既に使われています！'
+    },
+    isEditable() {
+      if (this.$store.state.user.conditions === '入場') {
+        return false
+      } else {
+        return true
+      }
     }
   },
   methods: {
