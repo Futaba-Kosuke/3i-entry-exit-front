@@ -23,9 +23,7 @@ export default new Vuex.Store({
         }
       }
     ],
-    name_list: [
-      'niba', 'test_user_name'
-    ],
+    names: [],
     // ポスト時に送信するデータ
     user: {
         user_handle: '',
@@ -37,6 +35,9 @@ export default new Vuex.Store({
     updateUserData(state, user_data) {
       state.user = user_data
     },
+    updateNamesData(state, names_data) {
+      state.names = names_data;
+    }
   },
   actions: {
   },
