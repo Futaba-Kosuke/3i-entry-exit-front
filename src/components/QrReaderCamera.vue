@@ -8,7 +8,7 @@
 
 <script>
 import { QrcodeStream } from 'vue-qrcode-reader'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   components: { QrcodeStream },
@@ -30,8 +30,9 @@ export default {
           conditions: '入場',
           time: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
         }
+        this.$emit('toggleDialog')
         this.$store.commit('updateUserData', user_data)
-        await axios.post('https://server-3i-entry-exit.herokuapp.com/api/v1/post_time', this.$store.state.user);
+        // await axios.post('https://server-3i-entry-exit.herokuapp.com/api/v1/post_time', this.$store.state.user);
       }
       // else if (this.result === '3ikargt3ikargt') {
       // }
