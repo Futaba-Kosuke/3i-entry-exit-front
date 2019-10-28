@@ -9,7 +9,6 @@
     <v-col v-if="isSearch()">
       <QrReaderCamera :user_name="user_name"/>
     </v-col>
-    <p>{{ name_list }}</p>
   </v-container>
 </template>
 
@@ -35,6 +34,7 @@ export default {
   computed: {
     hintMessage() {
       if (this.isSearch()) return 'このニックネームは有効です！'
+      else if (this.user_name === '') return ''
       else return 'このニックネームは既に使われています！'
     }
   },
