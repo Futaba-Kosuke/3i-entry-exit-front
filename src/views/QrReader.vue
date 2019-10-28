@@ -7,8 +7,17 @@
       persistent-hint
     />
     <v-col v-if="isSearch()">
-      <QrReaderCamera :user_name="user_name"/>
+      <QrReaderCamera :user_name="user_name" @toggleDialog="dialog = true"/>
     </v-col>
+    <v-dialog
+      v-model="dialog"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="headline">Game Start!!</v-card-title>
+        <v-card-text>ゲームスタートだ！</v-card-text>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -29,6 +38,7 @@ export default {
     return {
       user_name: '',
       name_list: this.$store.state.names,
+      dialog: false,
     }
   },
   computed: {
