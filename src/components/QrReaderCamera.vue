@@ -32,10 +32,17 @@ export default {
         }
         this.$emit('toggleDialog')
         this.$store.commit('updateUserData', user_data)
-        await axios.post('https://server-3i-entry-exit.herokuapp.com/api/v1/post_time', this.$store.state.user);
+        await axios.post('https://server-3i-entry-exit.herokuapp.com/api/v1/post_time', this.$store.state.user)
       }
-      // else if (this.result === '3ikargt3ikargt') {
-      // }
+      else if (this.result === '3ikargt3ikargt') {
+        const user_data = {
+          user_handle: this.user_name,
+          conditions: '退場',
+          time: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
+        }
+        this.$store.commit('updateUserData', user_data)
+        await axios.post('https://server-3i-entry-exit.herokuapp.com/api/v1/post_time', this.$store.state.user)
+      }
     },
 
     async onInit (promise) {
