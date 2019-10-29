@@ -15,6 +15,7 @@ export default {
   data () {
     return {
       headers: [
+          { text: '順位', value: 'rank' , sortable: false, },
           {
             text: 'ユーザー名',
             align: 'left',
@@ -28,6 +29,8 @@ export default {
   computed: {
     ranking_data() {
       const ranking_data = this.$store.state.ranking
+
+      let rank = 1;
 
       // ここでランキングデータを整形
       const result_ranking = ranking_data.map((score) => {
@@ -51,6 +54,9 @@ export default {
           if (seconds <= 9) score.time = '00' + ' : 0' + seconds
           else score.time = '00' + ' : ' + seconds
         }
+
+        score.rank = rank
+        rank++
 
         return score;
       })
