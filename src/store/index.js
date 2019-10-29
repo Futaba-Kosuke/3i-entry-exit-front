@@ -5,24 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    score_ranking: [
-      {
-        "name": "niba",
-        "play_time": {
-          "minutes": 1,
-          "seconds": 52,
-          "milliseconds": 128.719
-        }
-      },
-      {
-        "name": "test_user_name",
-        "play_time": {
-          "minutes": 2,
-          "seconds": 29,
-          "milliseconds": 477.441
-        }
-      }
-    ],
+    // ランキングデータ
+    ranking: [],
+    // 名前一覧
     names: [],
     // ポスト時に送信するデータ
     user: {
@@ -36,7 +21,10 @@ export default new Vuex.Store({
       state.user = user_data
     },
     updateNamesData(state, names_data) {
-      state.names = names_data;
+      state.names = names_data
+    },
+    updateRankingData(state, ranking_data) {
+      state.ranking = ranking_data
     }
   },
   actions: {
