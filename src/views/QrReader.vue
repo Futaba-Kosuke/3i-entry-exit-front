@@ -45,9 +45,11 @@ export default {
     QrReaderCamera,
   },
   created: async function() {
-    const names_data = await axios.get('https://server-3i-entry-exit.herokuapp.com/api/v1/names');
-    this.$store.commit('updateNamesData', names_data.data)
-    this.name_list = this.$store.state.names
+    if (this.$store.state.user.conditions !== '入場') {
+      const names_data = await axios.get('https://server-3i-entry-exit.herokuapp.com/api/v1/names');
+      this.$store.commit('updateNamesData', names_data.data)
+      this.name_list = this.$store.state.names
+    }
   },
   data () {
     return {
@@ -75,11 +77,11 @@ export default {
   },
   methods: {
     isSearch() {
+      if (this.$store.state.user.conditions === '入場') return true
       if (this.user_name === '') return false
       const result = this.name_list.indexOf(this.user_name)
       return result === -1
     },
-    // 
     entry() {
       this.entry_dialog = true
     },

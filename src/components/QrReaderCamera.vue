@@ -18,22 +18,26 @@ export default {
   data () {
     return {
       result: '',
-      error: ''
+      error: '',
+      flag: false,
     }
   },
   methods: {
     async onDecode (result) {
       this.result = result
       if (result === '3ihyuks3ihyuks') {
-        // ポスト処理
-        const user_data = {
-          user_handle: this.user_name,
-          conditions: '入場',
-          time: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
+        if (!this.flag) {
+          this.flag = true;
+          // ポスト処理
+          const user_data = {
+            user_handle: this.user_name,
+            conditions: '入場',
+            time: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
+          }
+          this.$emit('entry')
+          this.$store.commit('updateUserData', user_data)  // 一回Vuex側に渡す
+          await axios.post('https://server-3i-entry-exit.herokuapp.com/api/v1/post_time', this.$store.state.user)
         }
-        this.$emit('entry')
-        this.$store.commit('updateUserData', user_data)  // 一回Vuex側に渡す
-        await axios.post('https://server-3i-entry-exit.herokuapp.com/api/v1/post_time', this.$store.state.user)
       }
       else if (result === '3ikargt3ikargt' && this.$store.state.user.conditions === '入場') {
         // ポスト処理
