@@ -27,10 +27,31 @@ export default {
   },
   computed: {
     ranking_data() {
-      const score_ranking = this.$store.state.score_ranking
+      const ranking_data = this.$store.state.ranking
 
-      const result_ranking = score_ranking.map((score) => {
-        score["time"] = score["play_time"]["minutes"] + ':' + score["play_time"]["seconds"];
+      // ここでランキングデータを整形
+      const result_ranking = ranking_data.map((score) => {
+        const minutes = score.play_time.minutes
+        const seconds = score.play_time.seconds
+        
+        // 1分以内にゴールすると分がundefinedになってしまうので
+        if (minutes < 0 || seconds < 0) {  // もし万が一何かの間違いでタイムが負になったときの為に
+          score.time = '00 : 00'
+        } else if (minutes !== undefined) {  // 1分以上でゴールした人用
+
+          // 秒が10未満なら0を挿入
+          if (seconds <= 9) score.time = minutes + ' : 0' + seconds
+          else score.time = minutes + ' : ' + seconds
+
+          // 分が10未満なら0を挿入
+          if (minutes <= 9) score.time = '0' + score.time
+        
+        } else if (seconds >= 0) {  // 1分以内にゴールした人用
+
+          if (seconds <= 9) score.time = '00' + ' : 0' + seconds
+          else score.time = '00' + ' : ' + seconds
+        }
+
         return score;
       })
 
