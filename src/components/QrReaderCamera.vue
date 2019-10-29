@@ -1,6 +1,7 @@
 <template>
   <div>
     <p class="error">{{ error }}</p>
+    <p>{{ $store.state.user.conditions }}</p>
     <!-- <p class="decode-result">Last result: <b>{{ result }}</b></p> -->
     <qrcode-stream @decode="onDecode" @init="onInit" />
   </div>
@@ -19,15 +20,13 @@ export default {
     return {
       result: '',
       error: '',
-      flag: false,
     }
   },
   methods: {
     async onDecode (result) {
       this.result = result
       if (result === '3ihyuks3ihyuks') {
-        if (!this.flag) {
-          this.flag = true;
+        if (this.$store.state.user.conditions !== '入場') {
           // ポスト処理
           const user_data = {
             user_handle: this.user_name,
