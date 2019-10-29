@@ -1,6 +1,7 @@
 <template>
   <div>
     <p class="error">{{ error }}</p>
+    <p>{{ $store.state.user.conditions }}</p>
     <!-- <p class="decode-result">Last result: <b>{{ result }}</b></p> -->
     <qrcode-stream @decode="onDecode" @init="onInit" />
   </div>
@@ -18,24 +19,40 @@ export default {
   data () {
     return {
       result: '',
-      error: ''
+      error: '',
     }
   },
   methods: {
     async onDecode (result) {
       this.result = result
       if (result === '3ihyuks3ihyuks') {
+        if (this.$store.state.user.conditions !== '入場') {
+          // ポスト処理
+          const user_data = {
+            user_handle: this.user_name,
+            conditions: '入場',
+            time: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
+          }
+          this.$emit('entry')
+          this.$store.commit('updateUserData', user_data)  // 一回Vuex側に渡す
+          await axios.post('https://server-3i-entry-exit.herokuapp.com/api/v1/post_time', this.$store.state.user)
+        }
+      }
+      else if (result === '3ikargt3ikargt' && this.$store.state.user.conditions === '入場') {
+        // ポスト処理
         const user_data = {
           user_handle: this.user_name,
-          conditions: '入場',
+          conditions: '退場',
           time: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
         }
-        this.$emit('toggleDialog')
-        this.$store.commit('updateUserData', user_data)
-        await axios.post('https://server-3i-entry-exit.herokuapp.com/api/v1/post_time', this.$store.state.user);
+        this.$emit('exit')
+        this.$store.commit('updateUserData', user_data)  // 一回Vuex側に渡す
+        await axios.post('https://server-3i-entry-exit.herokuapp.com/api/v1/post_time', this.$store.state.user)
+        // 名前一覧の更新
+        const names = await axios.get('https://server-3i-entry-exit.herokuapp.com/api/v1/names')
+        this.$store.commit('updateNamesData', names.data)
+        this.$emit('updateNameList')
       }
-      // else if (this.result === '3ikargt3ikargt') {
-      // }
     },
 
     async onInit (promise) {
