@@ -51,8 +51,10 @@ export default {
   },
   data () {
     return {
+      // Vuex側のデータを参照
       user_name: this.$store.state.user.user_handle,
       name_list: this.$store.state.names,
+      // ダイアログのフラグ
       entry_dialog: false,
       exit_dialog: false,
     }
@@ -77,6 +79,7 @@ export default {
       const result = this.name_list.indexOf(this.user_name)
       return result === -1
     },
+    // 
     entry() {
       this.entry_dialog = true
     },
