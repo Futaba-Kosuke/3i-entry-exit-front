@@ -1,18 +1,9 @@
 <template>
   <v-app>
-    <v-app-bar app>
+    <v-app-bar app dark>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span class="title_font">すーぱーらんきんぐしすてむ</span>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
     </v-app-bar>
 
     <v-content>
@@ -21,8 +12,8 @@
 
     <v-footer
       app
-      color="primary lighten-1"
       padless
+      dark
     >
       <TransitionBar/>
     </v-footer>
@@ -44,3 +35,13 @@ export default {
   }),
 };
 </script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css?family=Kosugi+Maru&display=swap');
+.title_font {
+  font-family: 'Kosugi Maru', sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #E0FFFF;
+}
+</style>
