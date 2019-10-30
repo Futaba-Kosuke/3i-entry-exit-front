@@ -41,6 +41,7 @@ export default {
 .title_font {
   font-family: 'Kosugi Maru', sans-serif;
   font-weight: bold;
+  font-size: 20px;
   letter-spacing: 2px;
   color: #E0FFFF;
 }
