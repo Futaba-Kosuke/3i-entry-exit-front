@@ -1,32 +1,48 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar app dark>
+      <v-toolbar-title class="headline text-uppercase">
+        <span class="title_font">すーぱーらんきんぐしすてむ</span>
+      </v-toolbar-title>
+    </v-app-bar>
+
+    <v-content>
+      <router-view/>
+    </v-content>
+
+    <v-footer
+      app
+      padless
+      dark
+    >
+      <TransitionBar/>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+// import HelloWorld from './components/HelloWorld';
+import TransitionBar from './components/TransitionBar';
 
-#nav {
-  padding: 30px;
-}
+export default {
+  name: 'App',
+  components: {
+    // HelloWorld,
+    TransitionBar,
+  },
+  data: () => ({
+    //
+  }),
+};
+</script>
 
-#nav a {
+<style scoped>
+@import url('https://fonts.googleapis.com/css?family=Kosugi+Maru&display=swap');
+.title_font {
+  font-family: 'Kosugi Maru', sans-serif;
   font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: #E0FFFF;
 }
 </style>
