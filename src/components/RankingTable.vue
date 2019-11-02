@@ -1,11 +1,21 @@
 <template>
 <div>
-  <v-data-table
-    :headers="headers"
-    :items="ranking_data"
-    :items-per-page="50"
-    class="elevation-1"
-  ></v-data-table>
+  <v-card>
+    <v-text-field
+      v-model="target"
+      label="検索"
+      single-line
+      hide-details
+      style="margin: 15px;"
+    ></v-text-field>
+    <v-data-table
+      :headers="headers"
+      :items="ranking_data"
+      :items-per-page="50"
+      :search="target"
+      class="elevation-1"
+    ></v-data-table>
+  </v-card>
 </div>
 </template>
 
@@ -24,6 +34,7 @@ export default {
           },
           { text: 'タイム', value: 'time' },
       ],
+      target: '',
     }
   },
   computed: {
