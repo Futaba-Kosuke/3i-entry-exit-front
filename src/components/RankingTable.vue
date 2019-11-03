@@ -45,8 +45,10 @@ export default {
 
       // ここでランキングデータを整形
       const result_ranking = ranking_data.map((score) => {
-        const minutes = score.play_time.minutes
-        const seconds = score.play_time.seconds
+        let minutes = score.play_time.minutes
+        let seconds = score.play_time.seconds
+        if (seconds === undefined) seconds = 0
+        if (minutes === undefined) minutes = 0
         
         // 1分以内にゴールすると分がundefinedになってしまうので
         if (minutes < 0 || seconds < 0) {  // もし万が一何かの間違いでタイムが負になったときの為に
