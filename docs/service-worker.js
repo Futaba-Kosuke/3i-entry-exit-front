@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/3i-entry-exit-client/precache-manifest.58df34a9928ff11db1da1e0ae8ffec9b.js"
+  "/3i-entry-exit-client/precache-manifest.43190b5ca2d9b36dce1e678c22d74a5f.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "3i-entry-exit"});
