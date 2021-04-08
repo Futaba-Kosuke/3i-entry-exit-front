@@ -1,29 +1,30 @@
 # 3i-entry-exit
 
-## Project setup
+シューティングお化け屋敷のタイムアタックランキングシステムのWeb側です。
+
+## Requirement
+
+- yarn 1.22.10
+
+## Installation
+
+1. clone repository
+```sh
+git clone git@github.com:Futaba-Kosuke/3i-entry-exit-client.git
+cd 3i-entry-exit-client
 ```
+
+2. install modules
+```sh
 yarn install
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
+## Usage
+
+```bash
+# Start the server
+yarn dev
 ```
 
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Used
+- Vue.js
